@@ -8,7 +8,7 @@ Given the database schema, and test data, implement some specified functions.
 
 Clone this repository
 
-File > Open... -> select the location of the cloned repo
+In IntelliJ click File > Open... -> select the location of the cloned repo
 
 Open pg4Admin
 
