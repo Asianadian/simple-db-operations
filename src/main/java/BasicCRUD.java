@@ -9,7 +9,7 @@ public class BasicCRUD {
 
     private void initConn() {
         // JDBC & Database credentials
-        String url = "jdbc:postgresql://localhost:5432/Ass3";
+        String url = "jdbc:postgresql://localhost:5432/Test";
 
         String user = "postgres";
         String password = "postgres";
@@ -47,6 +47,8 @@ public class BasicCRUD {
         int numColums = resultSetMetaData.getColumnCount();
 
         String row = "";
+
+        //Make a string from tuple
         for (int i = 1; i <= numColums; i++) {
             row += resultSet.getString(i) + (i != numColums ? "," : "");
         }
@@ -56,18 +58,21 @@ public class BasicCRUD {
 
     public void addStudent(String first_name, String last_name, String email, String enrollment_date) throws SQLException {
         Statement statement = conn.createStatement();
+        //Insert student into db
         statement.executeUpdate(
                 String.format("INSERT INTO students (first_name, last_name, email, enrollment_date) VALUES ('%s', '%s', '%s', '%s');", first_name, last_name, email, enrollment_date));
     }
 
     public void updateStudentEmail(int student_id, String new_email) throws SQLException {
         Statement statement = conn.createStatement();
+        //Update student with given student_id's email
         statement.executeUpdate(
-                String.format("UPDATE students SET email = %s WHERE student_id = %d", new_email, student_id));
+                String.format("UPDATE students SET email = '%s' WHERE student_id = %d", new_email, student_id));
     }
 
     public void deleteStudent(int student_id) throws SQLException {
         Statement statement = conn.createStatement();
+        //Delete student with given student_id
         statement.executeUpdate(String.format("DELETE FROM students WHERE student_id = %d", student_id));
     }
 }

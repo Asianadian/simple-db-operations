@@ -1,6 +1,3 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 public class Main {
 
     public static void main(String[] args) {
@@ -9,8 +6,8 @@ public class Main {
        try {
            basicCRUD.getAllStudents();
            basicCRUD.addStudent("Daniel", "Chen", "da@gmail.com", "2023-08-01");
-           basicCRUD.updateStudentEmail(7, "danielchen@gmail.com");
-           basicCRUD.deleteStudent(7);
+           basicCRUD.updateStudentEmail(4, "danielchen@gmail.com");
+           basicCRUD.deleteStudent(4);
 
            basicCRUD.closeConn();
        }
