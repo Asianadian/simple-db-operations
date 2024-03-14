@@ -9,7 +9,7 @@ public class BasicCRUD {
 
     private void initConn() {
         // JDBC & Database credentials
-        String url = "jdbc:postgresql://localhost:5432/Test";
+        String url = "jdbc:postgresql://localhost:5432/Demo";
 
         String user = "postgres";
         String password = "postgres";
@@ -33,6 +33,7 @@ public class BasicCRUD {
         conn.close();
     }
 
+    //Prints all tuples in student table
     public void getAllStudents() throws SQLException {
         Statement statement = conn.createStatement();
         ResultSet resultSet = statement.executeQuery("SELECT * FROM students");
@@ -42,6 +43,7 @@ public class BasicCRUD {
         }
     }
 
+    //Converts tuple to string
     private String rowToString(ResultSet resultSet) throws SQLException {
         ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
         int numColums = resultSetMetaData.getColumnCount();
@@ -56,6 +58,7 @@ public class BasicCRUD {
         return String.format("(%s)", row);
     }
 
+    //Adds students to db with the given parameters
     public void addStudent(String first_name, String last_name, String email, String enrollment_date) throws SQLException {
         Statement statement = conn.createStatement();
         //Insert student into db
@@ -63,6 +66,7 @@ public class BasicCRUD {
                 String.format("INSERT INTO students (first_name, last_name, email, enrollment_date) VALUES ('%s', '%s', '%s', '%s');", first_name, last_name, email, enrollment_date));
     }
 
+    //Updates a student's email if they have the given student_id
     public void updateStudentEmail(int student_id, String new_email) throws SQLException {
         Statement statement = conn.createStatement();
         //Update student with given student_id's email
@@ -70,6 +74,7 @@ public class BasicCRUD {
                 String.format("UPDATE students SET email = '%s' WHERE student_id = %d", new_email, student_id));
     }
 
+    //Deletes a student associated with the given student_id
     public void deleteStudent(int student_id) throws SQLException {
         Statement statement = conn.createStatement();
         //Delete student with given student_id
